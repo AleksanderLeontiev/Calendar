@@ -1,0 +1,93 @@
+{
+  "name": "calendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "prettier --check . && eslint . --ext .js,.ts && tsc --noEmit",
+    "lint:fix": "prettier --write . && eslint . --fix --ext .js,.ts",
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://git@github.com:AleksanderLeontiev/calendar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://git@github.com:AleksanderLeontiev/calendar/issues"
+  },
+  "homepage": "https://git@github.com:AleksanderLeontiev/calendar#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.17",
+    "@babel/plugin-transform-runtime": "^7.12.17",
+    "@babel/preset-env": "^7.12.17",
+    "@babel/preset-typescript": "^7.13.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "@webpack-cli/serve": "^1.1.0",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^7.19.0",
+    "codecov": "^3.8.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.3",
+    "html-webpack-plugin": "^4.5.0",
+    "husky": "^4.3.4",
+    "jest": "^26.6.3",
+    "jest-localstorage-mock": "^2.4.5",
+    "lint-staged": "^10.5.3",
+    "prettier": "2.2.1",
+    "typescript": "^4.2.4",
+    "mini-css-extract-plugin": "^1.3.9",
+    "webpack": "^5.10.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0",
+    "@babel/polyfill": "^7.12.1",
+    "@types/jest": "^26.0.16",
+    "core-js": "^3.8.1",
+    "@types/node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
+    "css-loader": "^1.0.0",
+    "css-modules-typescript-loader": "^2.0.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^5.3.3",
+    "regenerator-runtime": "^0.13.7",
+    "browser-sync": "^2.26.14",
+    "browser-sync-webpack-plugin": "^2.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js,*.ts": [
+      "prettier --write",
+      "eslint --cache --fix --ext .js,.ts"
+    ],
+    "*.{css,md}": "prettier --write"
+  },
+  "jest": {
+    "clearMocks": true,
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 60,
+        "lines": 60
+      }
+    },
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
+  }
+}
