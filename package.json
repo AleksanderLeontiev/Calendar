@@ -63,6 +63,11 @@
     "browser-sync": "^2.26.14",
     "browser-sync-webpack-plugin": "^2.3.0"
   },
+  "dependencies": {
+    "@firebase/database-types": "^0.7.2",
+    "firebase": "^8.6.7",
+    "uuid": "^8.3.2"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
