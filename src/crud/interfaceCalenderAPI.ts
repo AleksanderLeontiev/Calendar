@@ -1,23 +1,17 @@
-export type Task = {
-    date: string;
-    text: string;
-    status: "wait" | "process" | "done";
-    tag: "low" | "middle" | "high";
-    id?: number | string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [key: string]: any;
-};
+import {Task} from "./types";
+
 export interface ICrud {
-    tasksId: Task["id"][] | string[];
+    tasksID: Task["id"][] | string[];
+
     create(newTask: Task): Promise<Task[]>;
-    read(id: Task["id"]): Promise<Task>;
-    update(id: Task["id"], updateTask: Task): Promise<Task>;
-    delete(id: Task["id"]): Promise<void>;
+    read(id: Task["id"] | string): Promise<Task>;
+    update(id: Task["id"] | string, updatedTask: Partial<Task>): Promise<Task>;
+    delete(id: Task["id"] | string): Promise<void>;
 }
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace LocalStorage {
     export class TaskCalendar implements ICrud {
-        tasksID: Task["id"][] = [];
+         tasksID: Task["id"][] = [];
 
         private tasks: Task[];
 
@@ -32,47 +26,40 @@ export namespace LocalStorage {
             }
         }
 
-        public async create(task: Task): Promise<Task[]> {
-            const NewTasks = [...this.tasks];
-            const newTasksID = [...this.tasksID];
-            if (task.id === undefined) {
-                const newTask = await this.createIdTask(task);
-                NewTasks.push(newTask);
-            } else {
-                NewTasks.push(task);
-            }
-            newTasksID.push(NewTasks[NewTasks.length - 1].id);
-            localStorage.setItem("taskCalendar", JSON.stringify(NewTasks));
-            this.tasks = NewTasks;
-            this.tasksID = newTasksID;
-            return NewTasks;
+
+
+        public async create(newTask: Task): Promise<Task[]> {
+            this.tasks.push(await this.createIdTask(newTask));
+            this.tasksID.push(this.tasks[this.tasks.length - 1].id);
+            localStorage.setItem("taskCalendar", JSON.stringify(this.tasks));
+            return this.tasks;
         }
 
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        public async read(id: Task["id"]): Promise<Task | Task[]> {
-            const result = id
-                ? this.tasks.filter((el: Task) => el.id === id)[0]
-                : this.tasks;
-            return result;
+        public async read(id: Task["id"]): Promise<Task > {
+            return this.tasks.filter((el: Task) => el.id === id)[0];
         }
 
         public async update(
             id: Task["id"],
             updateTask: Partial<Task>
         ): Promise<Task> {
-            const newTask = { ...((await this.read(id)) as Task) };
-            const storage = [...this.tasks];
-            Object.keys(newTask).forEach((el) => {
-                if (updateTask[el]) {
-                    newTask[el] = updateTask[el];
+            const newTask = await this.read(id);
+            // eslint-disable-next-line no-restricted-syntax
+            for (const key in newTask) {
+                if (updateTask[key]) {
+                    newTask[key] = updateTask[key];
                 }
-            });
-            const newStorage = storage.map((el: Task) =>
-                el.id === id ? newTask : el
+            }
+
+            const storage = JSON.parse(
+                localStorage.getItem("taskCalendar") as string
+            );
+            const newStorage = storage.map((item: Task) =>
+                item.id === id ? newTask : item
             );
             localStorage.setItem("taskCalendar", JSON.stringify(newStorage));
-            this.tasks = newStorage;
             return newTask;
         }
 
@@ -95,5 +82,25 @@ export namespace LocalStorage {
             newTask.id = id as number;
             return newTask;
         }
+
+        public async filterDate(filteredDate: Date): Promise<Task[]> {
+            return this.tasks.filter(
+                (item: Task) =>
+                    JSON.stringify(item.date) === JSON.stringify(filteredDate.toString())
+            );
+        }
+
+        public async filterText(text: Task["text"]): Promise<Task[]> {
+            return this.tasks.filter((item: Task) => item.text === text);
+        }
+
+        public async filterStatus(status: Task["status"]): Promise<Task[]> {
+            return this.tasks.filter((item: Task) => item.status === status);
+        }
+
+        public async filterTag(tag: Task["tag"]): Promise<Task[]> {
+            return this.tasks.filter((item: Task) => item.tag === tag);
+        }
+
     }
 }
