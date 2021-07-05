@@ -23,7 +23,7 @@ describe("methods Crud", () => {
   it("task calendar must contain task with ID", async () => {
     await crudCalendar.create(taskOne);
     const storage = JSON.parse(localStorage.getItem("taskCalendar") as string);
-    console.log(storage);
+
     let idIsDuplicated = false;
     storage
       .map((el: Task) => el.id)
@@ -36,7 +36,7 @@ describe("methods Crud", () => {
   });
   it("return task", async () => {
     const result = await crudCalendar.read(crudCalendar.tasksID[0]);
-    console.log(result);
+
     expect(result).toEqual(
       JSON.parse(localStorage.getItem("taskCalendar") as string)[0]
     );
@@ -45,7 +45,7 @@ describe("methods Crud", () => {
   it("update task", async () => {
     await crudCalendar.update(crudCalendar.tasksID[0], { tag: "low" });
     const resultTask = await crudCalendar.read(crudCalendar.tasksID[0]);
-    console.log(await crudCalendar);
+
     expect(resultTask.tag).toBe("low");
   });
 
