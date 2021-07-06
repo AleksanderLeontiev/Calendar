@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage . --detectOpenHandles",
     "lint": "prettier --check . && eslint . --ext .js,.ts && tsc --noEmit",
     "lint:fix": "prettier --write . && eslint . --fix --ext .js,.ts",
     "start": "webpack serve --mode development",

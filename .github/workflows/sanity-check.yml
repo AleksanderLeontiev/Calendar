@@ -17,4 +17,4 @@ jobs:
           npm run lint
       - name: Test check
         run: |
-          jest  --detectOpenHandles
+          npm run test
