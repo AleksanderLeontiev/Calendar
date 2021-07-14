@@ -24,15 +24,15 @@ describe("methods Crud", () => {
     await crudCalendar.create(taskOne);
     const storage = JSON.parse(localStorage.getItem("taskCalendar") as string);
 
-    let idIsDuplicated = false;
+    let idDuplicated = false;
     storage
       .map((el: Task) => el.id)
       .sort()
       .forEach((el: Task["id"], index: number) => {
-        idIsDuplicated = el === storage[index + 1] ? true : idIsDuplicated;
+        idDuplicated = el === storage[index + 1] ? true : idDuplicated;
       });
 
-    expect(idIsDuplicated).toBe(false);
+    expect(idDuplicated).toBe(false);
   });
   it("return task", async () => {
     const result = await crudCalendar.read(crudCalendar.tasksID[0]);
@@ -87,7 +87,6 @@ describe("filters task", () => {
   });
 
   it("Must filter tasks by status", async () => {
-    await crudCalendar.create(taskOne1);
     const result = await crudCalendar.filterStatus("wait");
     expect(result[0]).toEqual(
       JSON.parse(localStorage.getItem("taskCalendar") as string)[0]
@@ -95,7 +94,6 @@ describe("filters task", () => {
   });
 
   it("Must filter tasks by tag", async () => {
-    await crudCalendar.create(taskOne1);
     const result = await crudCalendar.filterTag("low");
     expect(result[0]).toEqual(
       JSON.parse(localStorage.getItem("taskCalendar") as string)[0]
