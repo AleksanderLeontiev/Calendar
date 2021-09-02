@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "jest --runInBand --detectOpenHandles --forceExit",
-    "lint": "prettier --check . && eslint . --ext .js,.ts && tsc --noEmit src/**/**/*.ts",
+    "lint": "prettier --check . && eslint . --ext .js,.ts && tsc --noEmit",
     "lint:fix": "prettier --write . && eslint . --fix --ext .js,.ts"
   },
   "repository": {
