@@ -95,8 +95,8 @@ it("Must filter tasks by tag", async () => {
   expect(result[0].tag).toEqual("LOW");
 });
 it("delete a task for the calendar", async () => {
-  const storageFirstElem = await taskService.get(taskService.tasksID[0]);
-  expect(storageFirstElem).not.toBe([]);
+  const elem = await taskService.get(taskService.tasksID[0]);
+  expect(elem).not.toBe([]);
   await taskService.delete(taskService.tasksID[0]);
   expect(taskService.tasksID).toEqual([]);
 });
