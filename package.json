@@ -70,6 +70,7 @@
     "clearMocks": true,
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
+    "coverageProvider": "babel",
     "coverageThreshold": {
       "global": {
         "branches": 60,
