@@ -20,8 +20,6 @@ module.exports = {
     "import/no-mutable-exports": "off",
     "import/prefer-default-export": "off",
     "jest/valid-title": "off",
-    "no-console": "off",
-    "no-alert": "off",
     "no-restricted-globals": "off",
     "no-plusplus": "off",
     "import/no-unresolved": "off",

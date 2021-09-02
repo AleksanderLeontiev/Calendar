@@ -6,10 +6,8 @@
   "scripts": {
     "test": "jest --runInBand --detectOpenHandles --forceExit",
     "lint": "prettier --check . && eslint . --ext .js,.ts && tsc --noEmit",
-    "lint:fix": "prettier --write . && eslint . --fix --ext .js,.ts",
-    "start": "webpack serve --mode development",
-    "build": "webpack --mode production"
-  },
+    "lint:fix": "prettier --write . && eslint . --fix --ext .js,.ts"
+   },
   "repository": {
     "type": "git",
     "url": "git+https://git@github.com:AleksanderLeontiev/calendar.git"
@@ -43,7 +41,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.3",
-    "husky": "^4.3.4",
+    "husky": "^6.0.0",
     "jest": "^26.6.3",
     "jest-localstorage-mock": "^2.4.5",
     "lint-staged": "^10.5.3",
@@ -56,7 +54,7 @@
   },
   "dependencies": {
     "@firebase/database-types": "^0.7.2",
-    "firebase": "^8.6.7"
+    "firebase": "^8.8.0"
   },
   "husky": {
     "hooks": {

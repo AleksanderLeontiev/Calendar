@@ -13,18 +13,14 @@ export const renderCalendar = (): void => {
     date.getMonth() + 1,
     0
   ).getDate();
-  console.log("lastDay", lastDay);
 
   const prevLastDay = new Date(
     date.getFullYear(),
     date.getMonth(),
     0
   ).getDate();
-  console.log("prevLastDay", prevLastDay);
 
   const firstDayIndex = date.getDay();
-
-  console.log("firstDayIndex", firstDayIndex);
 
   const lastDayIndex = new Date(
     date.getFullYear(),
@@ -32,7 +28,6 @@ export const renderCalendar = (): void => {
     0
   ).getDay();
 
-  console.log("lastDayIndex", lastDayIndex);
   const nextDays = 7 - lastDayIndex - 1;
   const months = [
     "January",
@@ -87,26 +82,3 @@ nextDate.addEventListener("click", () => {
   date.setMonth(date.getMonth() + 1);
   renderCalendar();
 });
-const tdays = document.querySelector(".days") as HTMLHtmlElement;
-console.log(tdays);
-
-// tdays.addEventListener('dblclick', (e) =>{
-//
-//     let day = e.target;
-//     if (day.tagName !== 'td'){
-//        return prompt("Введите сообщение: ")
-//
-//     }
-//
-//     if (day) {
-//         // @ts-ignore
-//         let notes = e.target.querySelector('div');
-//         if (!notes) {
-//             notes = document.createElement('div');
-//             // @ts-ignore
-//             e.target.appendChild(notes);
-//         }
-//     }
-//
-//
-// });
