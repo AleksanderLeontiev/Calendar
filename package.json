@@ -5,9 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "jest --runInBand --detectOpenHandles --forceExit",
-    "lint": "prettier --check . && eslint . --ext .js,.ts && tsc --noEmit",
+    "lint": "prettier --check . && eslint . --ext .js,.ts && tsc --noEmit src/**/**/*.ts",
     "lint:fix": "prettier --write . && eslint . --fix --ext .js,.ts"
-   },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://git@github.com:AleksanderLeontiev/calendar.git"
@@ -35,7 +35,6 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "codecov": "^3.8.1",
     "core-js": "^3.8.1",
-    "css-modules-typescript-loader": "^2.0.1",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^6.15.0",
@@ -48,7 +47,6 @@
     "node-sass": "^4.12.0",
     "prettier": "2.2.1",
     "regenerator-runtime": "^0.13.7",
-    "style-loader": "^0.23.1",
     "ts-loader": "^5.3.3",
     "typescript": "^4.2.4"
   },

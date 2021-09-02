@@ -4,7 +4,6 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    "jest/globals": true,
   },
   extends: [
     "airbnb-base",
@@ -17,13 +16,11 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "import/no-mutable-exports": "off",
-    "import/prefer-default-export": "off",
-    "jest/valid-title": "off",
-    "no-restricted-globals": "off",
-    "no-plusplus": "off",
     "import/no-unresolved": "off",
-    "import/extensions": "off",
-    "no-unused-vars": "off",
+    "import/extensions": ["warn", "never"],
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
   },
 };

@@ -6,7 +6,7 @@ export class TaskService {
 
   public static COLLECTION = "Tasks";
 
-  public  async create(task: Task) {
+  public async create(task: Task): Promise<unknown> {
     const ref = await firebase
       .database()
       .ref(TaskService.COLLECTION)
@@ -15,12 +15,12 @@ export class TaskService {
   }
 
   public async get(key: string): Promise<Task> {
-    return await (
+    return (
       await firebase.database().ref(`${TaskService.COLLECTION}/${key}`).get()
     ).val();
   }
 
-  public  async update(
+  public async update(
     key: string,
     updateTask: Partial<Task>
   ): Promise<Partial<Task>> {
@@ -41,7 +41,7 @@ export class TaskService {
 
   public async delete(key: string | undefined): Promise<void> {
     await firebase.database().ref(`${TaskService.COLLECTION}/${key}`).remove();
-    this.tasksID = this.tasksID.filter((el)=> el !== key)
+    this.tasksID = this.tasksID.filter((el) => el !== key);
   }
 
   public async filterByDate(createdDate: Date): Promise<Task[]> {
