@@ -20,7 +20,7 @@ module.exports = {
     "import/extensions": ["warn", "never"],
     "import/prefer-default-export": "off",
     "@typescript-eslint/no-namespace": "off",
-    "class-methods-use-this": "off",
     "no-plusplus": "off",
+    "no-unused-expressions": "off",
   },
 };

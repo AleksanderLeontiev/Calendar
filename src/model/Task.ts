@@ -1,5 +1,5 @@
 export type Task = {
-  key?: string;
+  key: string;
   createdDate: string;
   description: string;
   status: "WAIT" | "PROCESS" | "DONE";
